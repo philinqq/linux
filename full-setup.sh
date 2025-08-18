@@ -86,14 +86,13 @@ sudo systemctl enable sddm.service
 
 echo "==> Щоб Plasma на Wayland мала менше артефактів у сторонніх Qt-додатках"
 $PAC qt6-wayland qt5-wayland
+
 echo "==> Аудіо (PipeWire + інструменти)"
-# Прибрати jack2 з усім, що на нього спирається (на чистій системі зазвичай нічого)
-sudo pacman -Rsc --noconfirm jack2 jack2-dbus 2>/dev/null || true
-# 1) База PipeWire
+# базовий стек
 $PAC pipewire pipewire-pulse pipewire-alsa wireplumber
-# 2) ОКРЕМО — провайдер JACK від PipeWire
-$PAC pipewire-jack
-# 3) Інструменти/GUI
+# тут ключовий момент: ставимо pipewire-jack і одночасно погоджуємось видалити jack2, якщо він раптом підтягнувся
+sudo pacman -S --needed --noconfirm pipewire-jack || sudo pacman -R --noconfirm jack2 && sudo pacman -S --needed --noconfirm pipewire-jack
+# інструменти
 $PAC alsa-utils pavucontrol plasma-pa helvum easyeffects
 
 mkdir -p ~/.config/pipewire/pipewire.conf.d
