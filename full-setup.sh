@@ -82,7 +82,7 @@ $PAC plasma-desktop konsole dolphin systemsettings kscreen \
 
 echo "==> SDDM"
 $PAC sddm
-sudo systemctl enable --now sddm.service
+sudo systemctl enable sddm.service
 
 echo "==> Щоб Plasma на Wayland мала менше артефактів у сторонніх Qt-додатках"
 $PAC qt6-wayland qt5-wayland
