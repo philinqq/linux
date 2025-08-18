@@ -88,8 +88,13 @@ echo "==> Щоб Plasma на Wayland мала менше артефактів у
 $PAC qt6-wayland qt5-wayland
 
 echo "==> Аудіо (PipeWire + інструменти)"
-$PAC pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
-     alsa-utils pavucontrol plasma-pa helvum easyeffects
+# 1) якщо раптом є jack2 — прибираємо, щоб не було конфлікту
+sudo pacman -Rns --noconfirm jack2 jack2-dbus 2>/dev/null || true
+# 2) ставимо ядро PW + саме pipewire-jack ОКРЕМОЮ транзакцією
+$PAC pipewire pipewire-pulse pipewire-alsa wireplumber
+$PAC pipewire-jack
+# 3) вже потім – утиліти/GUI (ці пакети НЕ мають підтягувати jack2, коли jack уже "наданий")
+$PAC alsa-utils pavucontrol plasma-pa helvum easyeffects
 
 mkdir -p ~/.config/pipewire/pipewire.conf.d
 cat > ~/.config/pipewire/pipewire.conf.d/99-HiFi.conf <<'EOF'
