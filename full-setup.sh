@@ -105,8 +105,11 @@ EOF
 # systemctl --user restart pipewire pipewire-pulse wireplumber
 systemctl --user enable --now pipewire pipewire-pulse wireplumber || true
 
-echo "==> Браузер"
+echo "==> Браузер chrome"
 yay -S --needed --noconfirm google-chrome
+
+echo "==> Браузер firefox"
+$PAC firefox
 
 echo "==> Ігри"
 $PAC steam gamescope gamemode lib32-gamemode mangohud lib32-mangohud
