@@ -154,9 +154,9 @@ xdg-user-dirs-update
 echo "==> Встановлюємо libreoffice та додаткові шрифти"
 $PAC libreoffice-fresh libreoffice-fresh-uk hunspell hunspell-en_US hyphen hyphen-en \
   ttf-dejavu ttf-liberation noto-fonts ttf-carlito ttf-caladea
-yay -S --needed ttf-ms-fonts     # core web fonts, включно з Times New Roman
-yay -S --needed ttf-calibri      # власне Calibri (або пакети з родиною Vista/Office)
-yay -S --needed hunspell-uk
+yay -S --needed --noconfirm ttf-ms-fonts     # core web fonts, включно з Times New Roman
+yay -S --needed --noconfirm ttf-calibri      # власне Calibri (або пакети з родиною Vista/Office)
+yay -S --needed --noconfirm hunspell-uk
 
 echo "==> Опційна оптимізація NVIDIA (автостарт у сесії Xorg)"
 mkdir -p ~/.config/autostart
