@@ -125,7 +125,7 @@ $PAC obs-studio telegram-desktop
 
 echo "==> Фото/Відео програвачі + кодеки"
 $PAC gwenview vlc mpv ffmpeg gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
-vlc --reset-plugins-cache || true
+# vlc --reset-plugins-cache || true
 
 echo "==> Музика / Spotify / VS Code"
 yay -S --needed --noconfirm deadbeef spotify visual-studio-code-bin
