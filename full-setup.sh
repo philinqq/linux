@@ -16,7 +16,8 @@ REFRESH() { sudo pacman -Syyu --noconfirm; }
 
 echo "==> Оновлюємо ключі та вмикаємо multilib (якщо закоментовано)"
 sudo pacman -S --needed --noconfirm archlinux-keyring
-sudo sed -i '/^\[multilib\]/,/^Include/s/^#//' /etc/pacman.conf || true
+sudo sed -i -E 's/^\s*#\s*\[multilib\]/[multilib]/' /etc/pacman.conf
+sudo sed -i -E '/^\s*\[multilib\]/ {n; s/^\s*#\s*Include\s*=.*/Include = \/etc\/pacman.d\/mirrorlist/}' /etc/pacman.conf
 sudo pacman -Syy --noconfirm
 
 echo "==> Базові інструменти для складання AUR"
