@@ -110,6 +110,7 @@ yay -S --needed --noconfirm google-chrome
 
 echo "==> Ігри"
 $PAC steam gamescope gamemode lib32-gamemode mangohud lib32-mangohud
+systemctl --user enable --now gamemoded
 
 echo "==> OBS / Telegram"
 $PAC obs-studio telegram-desktop
