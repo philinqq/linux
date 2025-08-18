@@ -152,7 +152,7 @@ $PAC kate spectacle xdg-user-dirs ttf-dejavu ttf-liberation noto-fonts noto-font
 xdg-user-dirs-update
 
 echo "==> Встановлюємо libreoffice та додаткові шрифти"
-$PAC libreoffice-fresh libreoffice-fresh-uk hunspell-uk hyphen-uk \
+$PAC libreoffice-fresh hunspell hunspell-en_US hunspell-uk_UA hyphen hyphen-en hyphen-uk_UA \
   ttf-dejavu ttf-liberation noto-fonts ttf-carlito ttf-caladea
 yay -S --needed ttf-ms-fonts     # core web fonts, включно з Times New Roman
 yay -S --needed ttf-calibri      # власне Calibri (або пакети з родиною Vista/Office)
