@@ -78,7 +78,7 @@ sudo bash -c 'echo governor="performance" > /etc/default/cpupower' || true
 
 echo "==> KDE Plasma (мінімальний набір + Wayland)"
 $PAC plasma-desktop konsole dolphin systemsettings kscreen \
-     plasma-wayland-session xorg-xwayland xdg-desktop-portal-kde kde-gtk-config kwalletmanager
+     plasma-workspace xorg-xwayland xdg-desktop-portal-kde kcm-gtk kwalletmanager
 
 echo "==> SDDM"
 $PAC sddm
