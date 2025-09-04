@@ -144,3 +144,54 @@ sudo pacman -S kate
 
 # Програма для скріншотів
 sudo pacman -S spectacle
+
+
+# -----------------
+
+
+
+#VLC:
+sudo pacman -S vlc-plugins-all
+
+#Архіватор:
+sudo pacman -S ark
+
+#Calculator:
+sudo pacman -S gnome-calculator
+
+#Bluetooth:
+sudo pacman -S bluez bluez-utils bluez-deprecated-tools bluedevil
+sudo systemctl enable --now bluetooth
+yay -S xpadneo-dkms
+sudo modprobe hid_xpadneo
+
+#OBS audio:
+yay -S obs-pipewire-audio-capture pavucontrol
+
+#Doplphin:
+sudo pacman -S ntfs-3g kio-admin
+
+#GPU usage:
+sudo pacman -S nvtop
+
+
+#VM:
+
+sudo pacman -Syy
+sudo pacman -S archlinux-keyring
+sudo pacman -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat dmidecode
+sudo pacman -S ebtables iptables
+sudo pacman -S libguestfs
+sudo systemctl enable libvirtd.service
+sudo systemctl start libvirtd.service
+
+nano /etc/libvirt/libvirtdd.conf > unux_sock_group = "libvirt" & unix_sock_rw_perms = "0770"
+
+sudo usermod -a -G libvirt $(whoami)
+newgrp libvirt
+
+sudo systemctl restart libvirtd.service
+
+
+
+
