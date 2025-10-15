@@ -181,4 +181,42 @@ yay -S --needed --noconfirm ttf-ms-fonts
 yay -S --needed --noconfirm ttf-calibri
 yay -S --needed --noconfirm hunspell-uk
 
+echo "==> Archiver"
+$PAC ark
+
+echo "==> Calculator"
+$PAC gnome-calculator
+
+# Встановлює підтримку файлової системи NTFS (через ntfs-3g) і пакет kio-admin, що дозволяє відкривати системні каталоги з правами адміністратора у KDE.
+$PAC ntfs-3g kio-admin
+
+# Встановлює nvtop і htop — інструменти моніторингу ресурсів системи та навантаження на GPU і CPU.
+$PAC nvtop htop
+
+# Встановлює й запускає Bluetooth-служби, а також драйвер xpadneo для коректної роботи бездротових геймпадів Xbox через Bluetooth.
+$PAC bluez bluez-utils bluez-deprecated-tools bluedevil
+sudo systemctl enable --now bluetooth
+yay -S --needed --noconfirm xpadneo-dkms
+sudo modprobe hid_xpadneo
+
+# Оновлює прошивки пристроїв, перевіряє мережевий адаптер, вмикає NetworkManager для керування з’єднаннями Wi-Fi, показує доступні мережі та встановлює мережевий аплет Plasma-NM для KDE.
+echo "==> Updating firmware and enabling NetworkManager"
+sudo pacman -Syu --noconfirm linux-firmware
+sudo systemctl enable --now NetworkManager
+sudo pacman -S --needed --noconfirm plasma-nm
+# Інформаційні команди (не обов’язкові)
+echo "==> Detecting network adapter:"
+lspci -k | grep -A3 -i network || true
+echo "==> Listing available Wi-Fi networks:"
+nmcli device wifi list || true
+
+# Встановлює інструменти для підключення iPhone до системи через USB та перезапускає служби, щоб пристрій коректно визначався й відображався у файловому менеджері.
+echo "==> Setting up iPhone USB connection support"
+$PAC ifuse libimobiledevice usbmuxd gvfs-afc
+systemctl --user restart gvfs-afc-volume-monitor.service || true
+sudo systemctl restart usbmuxd || true
+
+# Встановлює всі доступні плагіни для VLC, щоб забезпечити підтримку більшості аудіо- та відеоформатів.
+$PAC vlc-plugins-all
+
 echo "Done! Reboot if necessary to apply kernel modules."
