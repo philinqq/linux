@@ -67,8 +67,8 @@ CORE_PKGS=(
   vulkan-icd-loader lib32-vulkan-icd-loader
   # Audio (PipeWire stack)
   pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
-  # Desktop + login manager (minimal)
-  plasma-desktop plasma-wayland-session
+  # Desktop + login manager (minimal, Plasma 6)
+  plasma-desktop kwin plasma-workspace xorg-xwayland
   sddm sddm-kcm
   # Browser
   firefox
